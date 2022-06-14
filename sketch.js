@@ -4,11 +4,9 @@ var numSwatches = 12;
 var pickedCol;
 let mosImage, swatches;
 let swatchesCol = ["#d47777", "#d4d077", "#bdd477", "#77d4a1", "#77c9d4", "#779ed4", "#e2bbbb", "#dce2bb", "#7d5e63", "#7d765e", "#d3a709", "#6d7368"]
-let stl;
-let str;
-let sbl;
-let sbr;
-let swatchCenter;
+let stl, sbr, swatchCenter; //swatch variables for cordinates
+let ctl, cbr, canvasCenter; //canvas variables for cordinates
+var clickedVal = false;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -17,12 +15,13 @@ function setup() {
 	mosImage = createGraphics(vMosaicX, vMosaicX);
 	swatches = createGraphics(numSwatches / 6 * vScale * 2, numSwatches / 2 * vScale * 2);
 
-	swatchCenter = createVector(width / 2 - vMosaicX / 2 - (vScale * 4), height / 2 - vMosaicX / 4);//swatch center
+	swatchCenter = createVector(width / 2 - vMosaicX / 2 - (vScale * 4), height / 2 - vMosaicX / 4); //swatch center
 	stl = createVector(width / 2 - vMosaicX / 2 - (vScale * 6), height / 2 - vMosaicX / 2); //swatch top left
-	str = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2 - vMosaicX / 2); //swatch top right
-	sbl = createVector(width / 2 - vMosaicX / 2 - (vScale * 6), height / 2); //swatch bottom left
 	sbr = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2); //swatch bottom right
 
+	ctl = createVector(width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2); //swatch top left
+
+	cbr = createVector(width / 2 + vMosaicX / 2, height / 2 + vMosaicX / 2); //swatch bottom right
 }
 
 function draw() {
@@ -48,22 +47,38 @@ function draw() {
 	image(swatches, width / 2 - vMosaicX / 2 - (vScale * 6), height / 2 - vMosaicX / 2);
 
 
+	if (clickedVal == true) {
+		ellipse(mouseX, mouseY, 20, 20);
+		clickedVal = false;
+	}
 
+}
 
-	/*ellipse(stl.x, stl.y, 10);
-	ellipse(str.x, str.y, 10);
-	ellipse(sbl.x, sbl.y, 10);
-	ellipse(sbr.x, sbr.y, 10);
-	ellipse(swatchCenter.x, swatchCenter.y, 10);
-	*/
-
-
-	if (mouseIsPressed === true && mouseX>stl.x &&mouseX<str.x&&mouseY>stl.y&&mouseY<sbr.y) {
+function mousePressed() { //testing for within swatch panel
+	console.log("pressed");
+	if (mouseX > stl.x && mouseX < sbr.x && mouseY > stl.y && mouseY < sbr.y) {
 		pickedCol = get(mouseX, mouseY);
-		ellipse(mouseX, mouseY, 20,20);
-		//console.log(pickedCol);
+		clickedVal = true;
+		//	console.log(pickedCol);
+	}
+	if (mouseX > ctl.x && mouseX < cbr.x && mouseY > ctl.y && mouseY < cbr.y) {
+		clickedVal = true;
 	}
 }
+/*
+if (mouseIsPressed === true && mouseX>stl.x &&mouseX<str.x&&mouseY>stl.y&&mouseY<sbr.y) {//testing for within swatch panel
+	pickedCol = get(mouseX, mouseY);
+	ellipse(mouseX, mouseY, 20,20);
+	//console.log(pickedCol);
+}
+
+if (mouseIsPressed === true && mouseX>ctl.x &&mouseX<cbr.x&&mouseY>ctl.y&&mouseY<cbr.y) {//testing for within swatch panel
+	pickedCol = get(mouseX, mouseY);
+	ellipse(mouseX, mouseY, 50,50);
+	//console.log(pickedCol);
+}
+*/
+
 
 //babybell
 /*
