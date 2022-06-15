@@ -19,7 +19,7 @@ function setup() {
 
 	swatchCenter = createVector(width / 2 - vMosaicX / 2 - (vScale * 4), height / 2 - vMosaicX / 4); //swatch center
 	stl = createVector(width / 2 - vMosaicX / 2 - (vScale * 6), height / 2 - vMosaicX / 2); //swatch top left
-	sbr = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2- vMosaicX / 2+(vScale*6*2)); //swatch bottom right
+	sbr = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2 - vMosaicX / 2 + (vScale * 6 * 2)); //swatch bottom right
 	str = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2 - vMosaicX / 2); //swatch top right
 	ctl = createVector(width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2); //canvas top left
 	cbr = createVector(width / 2 + vMosaicX / 2, height / 2 + vMosaicX / 2); //canvas bottom right
@@ -93,7 +93,10 @@ function mousePressed() { //testing for within swatch panel
 		pickedCol = swatchesCol[swatchLoc];
 		//	console.log(swatchLoc);
 	}
-
+	if (mouseX > 0 && mouseX < 250 && mouseY > 0 && mouseY < 250) {
+		let fs = fullscreen();
+		fullscreen(!fs);
+	}
 }
 
 
@@ -107,8 +110,9 @@ function keyPressed() {
 			}
 		}
 	}
-	if (keyCode === RETURN) {
-		let fs = fullscreen();
-    fullscreen(!fs);
-	}
+
 }
+
+
+
+
