@@ -1,5 +1,5 @@
-var vMosaicX = 480;
-var vScale = 28;
+var vMosaicX = 500;
+var vScale = 25;
 var numSwatches = 12; //we only have 12 colors in swatch col list so if this changes then update the colors too
 var pickedCol = "#eeeeee";
 let mosImage, swatches;
