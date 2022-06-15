@@ -107,5 +107,8 @@ function keyPressed() {
 			}
 		}
 	}
-
+	if (keyCode === RETURN) {
+		let fs = fullscreen();
+    fullscreen(!fs);
+	}
 }
