@@ -1,6 +1,6 @@
 var vMosaicX = 480;
-var vScale = 20;
-var numSwatches = 12;
+var vScale = 28;
+var numSwatches = 12; //we only have 12 colors in swatch col list so if this changes then update the colors too
 var pickedCol = "#eeeeee";
 let mosImage, swatches;
 let swatchesCol = ["#ffffff", "#d47777", "#bdd477", "#77d4a1", "#77c9d4", "#779ed4", "#e2bbbb", "#dce2bb", "#7d5e63", "#7d765e", "#d3a709", "#6d7368"]
@@ -19,10 +19,10 @@ function setup() {
 
 	swatchCenter = createVector(width / 2 - vMosaicX / 2 - (vScale * 4), height / 2 - vMosaicX / 4); //swatch center
 	stl = createVector(width / 2 - vMosaicX / 2 - (vScale * 6), height / 2 - vMosaicX / 2); //swatch top left
-	sbr = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2); //swatch bottom right
+	sbr = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2- vMosaicX / 2+(vScale*6*2)); //swatch bottom right
 	str = createVector(width / 2 - vMosaicX / 2 - (vScale * 2), height / 2 - vMosaicX / 2); //swatch top right
-	ctl = createVector(width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2); //swatch top left
-	cbr = createVector(width / 2 + vMosaicX / 2, height / 2 + vMosaicX / 2); //swatch bottom right
+	ctl = createVector(width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2); //canvas top left
+	cbr = createVector(width / 2 + vMosaicX / 2, height / 2 + vMosaicX / 2); //canvas bottom right
 	for (let x = 0; x < vMosaicX; x += vScale) {
 		for (let y = 0; y < vMosaicX; y += vScale) {
 			mosImage.stroke(230, 230, 220);
@@ -47,7 +47,7 @@ function draw() {
 	stroke(180, 180, 160);
 	noFill();
 
-	rect(width / 2 - vMosaicX / 2 - vScale/2, height / 2 - vMosaicX / 2 - vScale/2, vMosaicX + vScale, vMosaicX + vScale)
+	rect(width / 2 - vMosaicX / 2 - vScale / 2, height / 2 - vMosaicX / 2 - vScale / 2, vMosaicX + vScale, vMosaicX + vScale)
 	image(mosImage, width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2);
 	image(swatches, width / 2 - vMosaicX / 2 - (vScale * 6), height / 2 - vMosaicX / 2);
 
@@ -93,17 +93,19 @@ function mousePressed() { //testing for within swatch panel
 		pickedCol = swatchesCol[swatchLoc];
 		//	console.log(swatchLoc);
 	}
-	
+
 }
 
+
 function keyPressed() {
-  if (keyCode === BACKSPACE) {
+	if (keyCode === BACKSPACE) {
 		for (let x = 0; x < vMosaicX; x += vScale) {
 			for (let y = 0; y < vMosaicX; y += vScale) {
 				mosImage.stroke(230, 230, 220);
 				mosImage.fill("#eeeeee");
 				mosImage.rect(x, y, vScale);
 			}
-		} 
-  }
+		}
+	}
+
 }
