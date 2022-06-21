@@ -147,7 +147,7 @@ function drawMosaic() {
 	ctl = createVector(width / 2 - vMosaicX / 2, height / 2 - vMosaicX / 2); //canvas top left
 	cbr = createVector(width / 2 + vMosaicX / 2, height / 2 + vMosaicX / 2); //canvas bottom right
 }
-/*
+
 function touchStarted(){
   return false;
 }
@@ -159,4 +159,4 @@ function touchMoved(){
 function touchEnded(){
   return false;
 }
-*/
+
